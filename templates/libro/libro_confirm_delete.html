@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %}Book py | Listado de Autores {% endblock titulo %}
+{% block body %}
+   
+      <form id="form_creacion" action="" method="POST" class="form-horizontal">
+            {% csrf_token %}
+         
+                {{ form.as_p }}
+  
+                <p>Desea eliminar el registro {{ object }}?</p>
+                <button class="btn btn-danger" type="submit">Eliminar</button>
+        </form>
+    
+{% endblock body %}
