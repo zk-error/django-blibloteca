@@ -27,6 +27,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    #'querycount.middleware.QueryCountMiddleware', # este es para hacer la pruebas de velocidad 
+    'usuario.middleware.PruebaMiddleware', #difinemios que en esta runta tendremos un middleware personalizado
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -97,9 +99,13 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] 
 #para rediriguir al usuario despues de iniciar secion y cerrarla---------------
-LOGIN_REDIRECT_URL = "home"
-#LOGOUT_REDIRECT_URL = "home"
-ACCOUNT_LOGOUT_REDIRECT = "home"  # este se usa en allauht ya que  tiene configuracion para cerrar cesion
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = "index"
+
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#para pillow
+MEDIA_URL = "/media/" 
+MEDIA_ROOT = BASE_DIR / "media" 

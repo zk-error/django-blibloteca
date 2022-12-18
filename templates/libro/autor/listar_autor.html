@@ -1,20 +1,18 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block titulo %}Book py | Listado de Autores {% endblock titulo %}
-{% block extra_css %}<link rel="stylesheet" href="{% static 'css/lib/datatable/dataTables.bootstrap.min.css' %}">{% endblock extra_css %}
-
+{% comment %} este extra css es para el datatable {% endcomment %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'assets/css/lib/datatable/dataTables.bootstrap.min.css' %}">{% endblock extra_css %} 
 {% block body %}
-
-{% if autores %}
 <div class="card">
-    <div class="card-header">
-
+  <div class="card-header">
     <div class="row">
       <div class="col-md-8">
         <strong class="card-title">Listado de Autores</strong>
       </div>
       <div class="col-md-4">
-        <button type="button" class="btn btn-primary"> <a style="color:#ffff" href="{% url 'libro:crear_autor' %}">REGISTRAR AUTOR</a> </button>
+        <button type="button" class="btn btn-primary"
+        onclick="abrir_modal_creacion('{% url 'libro:crear_autor' %}');"> REGISTRAR AUTOR</button>
       </div>
     </div>
 
@@ -23,43 +21,18 @@
     <table id="tabla_autores" class="table">
       <thead>
         <tr>
-          <th>Id</th>
+          <th>#</th>
           <th>Nombres</th>
           <th>Apellidos</th>
           <th>Nacionalidad</th>
           <th>Descripcion</th>
-          <th>Opciones</th>
         </tr>
       </thead>
       <tbody>
-        {% for autor  in autores  %}
-        <tr>
-            <td>{{autor.id}}</td>
-            <td>{{autor.nombre}}</td>
-            <td>{{autor.apellidos}}</td>
-            <td>{{autor.nacionalidad}}</td>
-            <td>{{autor.descripcion}}</td>
-            <td>
-                <a href="{% url 'libro:editar_autor' autor.pk %}" class="btn btn-primary">Editar</a>
-                <a href="{% url 'libro:eliminar_autor' autor.pk %}" class="btn btn-danger">Eliminar</a>
-            </td>
-          </tr>
-        {% endfor %}
-       
       </tbody>
     </table>
   </div>
 </div>
-{% else %}
-
-no hay autores
-
-    
-{% endif %}
-    
-
-
-
 <div class="modal fade" id="creacion" role="dialog">
 
 </div>
@@ -72,8 +45,10 @@ no hay autores
 
 
 {% endblock body %}
+
 {% block extrajs %}
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
-<script src="{% static 'js/libro/autor.js' %}"></script>
+<script src="{% static 'assets/js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/autores/index.js' %}"></script>
+
 {% endblock extrajs %}

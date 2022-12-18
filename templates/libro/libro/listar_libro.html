@@ -83,8 +83,9 @@ no hay libros disponibles
 <script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
 <script src="{% static 'js/libro/autor.js' %}"></script>
 
-<script type="text/javascript">
-  var $ = jQuery.noConflict();
+{% comment %} esta parte la pusimos en el main.js para hacelo general {% endcomment %}
+{% comment %} <script type="text/javascript">
+  //var $ = jQuery.noConflict();  //esta variable la pondremos global en el archivo main para que no de error en ningun otra archivo
   function abrir_modal_edicion(url){
     $('#edicion').load(url,function(){
       $(this).modal('show');
@@ -97,6 +98,6 @@ no hay libros disponibles
     });
   }
 
-</script>
+</script> {% endcomment %}
 
 {% endblock extrajs %}
